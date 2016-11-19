@@ -1,12 +1,16 @@
 package com.android.hackathon.HackathonAndroid.network.api;
 
+import com.android.hackathon.HackathonAndroid.modle.ProductKindResult;
+import com.android.hackathon.HackathonAndroid.modle.ProductResult;
 import com.android.hackathon.HackathonAndroid.modle.RequestBody;
-import com.android.hackathon.HackathonAndroid.modle.Result;
+import com.android.hackathon.HackathonAndroid.modle.UserResult;
 
 
 
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import rx.Observable;
 
 /**
@@ -15,5 +19,16 @@ import rx.Observable;
 
 public interface MyApi  {
     @POST("login")
-    Observable<Result> login(@Body RequestBody requestBody);
+    Observable<UserResult> login(@Body RequestBody requestBody);
+
+    @GET("kinds")
+    Observable<ProductKindResult> getKinds();
+
+    @GET("products")
+    Observable<ProductResult> getAllProducts();
+
+    @GET("kinds/{kindId}/products")
+    Observable<ProductResult> getOneKindProducts(@Path("kindId") int kindId);
+
+
 }

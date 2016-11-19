@@ -4,7 +4,7 @@ package com.android.hackathon.HackathonAndroid.modle;
  * Created by zzbpc on 2016/11/19.
  */
 
-public class Result {
+public class UserResult {
     public String getUserId() {
         return userId;
     }
@@ -29,7 +29,7 @@ public class Result {
         this.err = err;
     }
 
-    public Result(String userId, boolean result, String err) {
+    public UserResult(String userId, boolean result, String err) {
 
         this.userId = userId;
         this.result = result;

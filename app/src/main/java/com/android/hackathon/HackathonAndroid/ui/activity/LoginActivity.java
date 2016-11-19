@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.android.hackathon.HackathonAndroid.R;
 import com.android.hackathon.HackathonAndroid.modle.RequestBody;
-import com.android.hackathon.HackathonAndroid.modle.Result;
+import com.android.hackathon.HackathonAndroid.modle.UserResult;
 import com.android.hackathon.HackathonAndroid.network.NetWork;
 
 import butterknife.Bind;
@@ -38,12 +38,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private RequestBody requestBody;
     private String username;
     private String password;
-    private Subscriber<Result> subscriber;
-    private static final String TAG ="LoginActivity";
+    private Subscriber<UserResult> subscriber;
+    private static final String TAG = "LoginActivity";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.activity_login);
 
         ButterKnife.bind(this);
         loginbtn.setOnClickListener(this);
@@ -53,36 +54,38 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         username = usernametv.getText().toString();
         password = passwordtv.getText().toString();
-        Log.d(TAG,"click" + username+"  "+password);
-        requestBody = new RequestBody(username,password);
-        Toast.makeText(LoginActivity.this,username+ "  "+password,Toast.LENGTH_SHORT);
+        Log.d(TAG, "click" + username + "  " + password);
+        requestBody = new RequestBody(username, password);
         subscription = NetWork.getMyApi()
-                              .login(requestBody)
-                              .subscribeOn(Schedulers.io())
-                              .observeOn(AndroidSchedulers.mainThread())
-                              .subscribe(getSubscriber());
+                .login(requestBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getSubscriber());
     }
 
-    public Subscriber<Result> getSubscriber(){
-        subscriber = new Subscriber<Result>() {
+    public Subscriber<UserResult> getSubscriber() {
+        subscriber = new Subscriber<UserResult>() {
             @Override
             public void onCompleted() {
-
+                Log.d(TAG, "completed");
             }
 
             @Override
             public void onError(Throwable e) {
-                Toast.makeText(LoginActivity.this,"登录失败,请检查网络和账号密码",Toast.LENGTH_SHORT);
-                Log.d(TAG,e.toString());
-
+                if (e.toString().contains("net"))
+                    Toast.makeText(LoginActivity.this, "登录失败,请检查网络是否连接", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(LoginActivity.this, "账号或者密码错误,请重新输入", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, e.toString());
             }
 
             @Override
-            public void onNext(Result result) {
-                Toast.makeText(LoginActivity.this,"登录成功", Toast.LENGTH_SHORT);
-                Log.d(TAG,result.isResult()+"  "+result.getErr()+"  "+result.getUserId());
-                Intent intent  = new Intent(LoginActivity.this,MainActivity.class);
+            public void onNext(UserResult userResult) {
+                Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, userResult.isResult() + "  " + userResult.getErr() + "  " + userResult.getUserId());
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
+                LoginActivity.this.finish();
             }
         };
         return subscriber;
