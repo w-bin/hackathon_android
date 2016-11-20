@@ -60,9 +60,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
 
         }
-        else if(id == R.id.myorders){
-            //跳转到我的订单
-        }
 
         //noinspection SimplifiableIfStatement
         return super.onOptionsItemSelected(item);
