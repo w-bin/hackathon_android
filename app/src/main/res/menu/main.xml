@@ -7,10 +7,5 @@
        android:title="@string/shoppingcard"
         android:orderInCategory="100"
     />
-    <item
-        android:id="@+id/myorders"
-        android:orderInCategory="200"
-        android:title="@string/myorders"
-        app:showAsAction = "never"
-    />
+    
 </menu>

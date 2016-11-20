@@ -1,5 +1,7 @@
 package com.android.hackathon.HackathonAndroid.modle;
 
+import java.util.ArrayList;
+
 /**
  * Created by zzbpc on 2016/11/19.
  */
@@ -7,12 +9,13 @@ package com.android.hackathon.HackathonAndroid.modle;
 public class Product {
     private String price;
     private String name;
-    private String imgurl;
+
+    private ArrayList<String> imgUrl;
     private String describe;
     private String productId;
     private String kindId;
     private int number;
-
+    private int cardId;
     public String getPrice() {
         return price;
     }
@@ -29,13 +32,6 @@ public class Product {
         this.name = name;
     }
 
-    public String getImgurl() {
-        return imgurl;
-    }
-
-    public void setImgurl(String imgurl) {
-        this.imgurl = imgurl;
-    }
 
     public String getDescribe() {
         return describe;
@@ -69,14 +65,31 @@ public class Product {
         this.number = number;
     }
 
-    public Product(String price, String name, String imgurl, String describe, String productId, String kindId, int number) {
+    public ArrayList<String> getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(ArrayList<String> imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public int getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(int cardId) {
+        this.cardId = cardId;
+    }
+
+    public Product(String price, String name, ArrayList<String> imgUrl, String describe, String productId, String kindId, int number, int cardId) {
 
         this.price = price;
         this.name = name;
-        this.imgurl = imgurl;
+        this.imgUrl = imgUrl;
         this.describe = describe;
         this.productId = productId;
         this.kindId = kindId;
         this.number = number;
+        this.cardId = cardId;
     }
 }

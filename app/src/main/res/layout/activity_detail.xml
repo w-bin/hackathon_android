@@ -12,53 +12,69 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="2dp"
-        android:textSize="20sp"
         android:text="雅马哈"
         android:textColor="@android:color/black"
-        />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/productDes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="2dp"
-        android:textSize="15sp"
         android:text="这是一个入门吉他"
         android:textColor="#696161"
-        />
+        android:textSize="15sp" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/productPrice"
-        android:textSize="30sp"
-        android:textColor="@android:color/holo_red_light"
-        android:layout_alignParentLeft="true"
-        android:padding="3dp"
-        android:text="Y555.00"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:textSize="15sp"
-        android:padding="2dp"
-        android:id="@+id/productRemain"
-        android:textColor="@android:color/darker_gray"
-        android:text="库存还有多少件"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        />
+
+        <TextView
+            android:id="@+id/productPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:padding="3dp"
+            android:text="Y555.00"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="30sp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/right"
+
+            android:layout_alignParentRight="true"
+            >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:text="库存: "
+            />
+        <TextView
+            android:id="@+id/productRemain"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:padding="2dp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text= " 件"
+            />
+        </LinearLayout>
+
     </RelativeLayout>
+
     <Button
+        android:id="@+id/submitbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/submitbtn"
-        android:text="加入购物车"
-        android:textSize="15sp"
         android:background="@android:color/holo_red_light"
+        android:text="加入购物车"
         android:textColor="@android:color/black"
-        />
+        android:textSize="15sp" />
 </LinearLayout>

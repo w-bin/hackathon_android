@@ -5,11 +5,11 @@ package com.android.hackathon.HackathonAndroid.modle;
  */
 
 public class UserResult {
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -29,14 +29,14 @@ public class UserResult {
         this.err = err;
     }
 
-    public UserResult(String userId, boolean result, String err) {
+    public UserResult(int userId, boolean result, String err) {
 
         this.userId = userId;
         this.result = result;
         this.err = err;
     }
 
-    private String userId;
+    private int userId;
     private boolean result;
     private String err;
 

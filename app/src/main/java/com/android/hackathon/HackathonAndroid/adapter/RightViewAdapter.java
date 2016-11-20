@@ -3,6 +3,7 @@ package com.android.hackathon.HackathonAndroid.adapter;
 import android.media.Image;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +66,7 @@ public class RightViewAdapter extends RecyclerView.Adapter {
             ((HeadViewHolder) holder).banner.setBannerTitleList(titleList);
             ((HeadViewHolder) holder).banner.setImages(imgList);
         }else{
-            Glide.with(holder.itemView.getContext()).load(product.getImgurl()).into(((RightViewHolder)holder).image);
+            Glide.with(holder.itemView.getContext()).load(product.getImgUrl().get(0)).into(((RightViewHolder)holder).image);
             ((RightViewHolder) holder).producttv.setText(product.getName());
             ((RightViewHolder) holder).pricetv.setText(product.getPrice());
             ((RightViewHolder) holder).cardView.setOnClickListener(new View.OnClickListener() {

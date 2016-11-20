@@ -23,6 +23,8 @@ import com.android.hackathon.HackathonAndroid.modle.ProductResult;
 import com.android.hackathon.HackathonAndroid.network.NetWork;
 import com.android.hackathon.HackathonAndroid.ui.activity.ProductDetailActivity;
 
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rx.Subscriber;
@@ -81,10 +83,11 @@ public class MainFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), ProductDetailActivity.class);
                 Bundle bundle = new Bundle();
 
+                bundle.putString("productId",product.getProductId());
                 bundle.putString("productName",product.getName());
                 bundle.putString("productPrice",product.getPrice());
                 bundle.putInt("productRemain",product.getNumber());
-                bundle.putString("productImage",product.getImgurl());
+                bundle.putStringArrayList("productImgUrl",product.getImgUrl());
                 bundle.putString("productDes",product.getDescribe());
                 intent.putExtras(bundle);
                 startActivity(intent);

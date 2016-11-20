@@ -82,8 +82,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onNext(UserResult userResult) {
                 Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, userResult.isResult() + "  " + userResult.getErr() + "  " + userResult.getUserId());
+//                Log.d(TAG, userResult.isResult() + "  " + userResult.getErr() + "  " + userResult.getUserId());
+                if(userResult.getErr()!=null&&userResult.getErr().contains("账号密码错误")) {
+                    Toast.makeText(LoginActivity.this, "账号或者密码错误,请重新输入", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("userId",userResult.getUserId());
+                intent.putExtra("isLogin",true);
                 startActivity(intent);
                 LoginActivity.this.finish();
             }
